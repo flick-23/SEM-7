@@ -1,0 +1,6 @@
+node_modules
+.vscode
+npm-debug.log
+.serverless
+variables.env
+uploads/

@@ -1,0 +1,125 @@
+<%-include ('../partials/header') %>
+
+<div class="d-flex mt-2">
+  <h3 class="m-3 text-main font-weight-bold"><%=__('pharma')%> <%= __('portal')%></h3>
+  <% if(error) {%>
+  <div class="ml-5 alert alert-danger roundness">
+    <%=error%>
+  </div>
+  <%}%>
+</div>
+<br>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-5 col-xl-3">
+    <div class="card border-0 shadow-lg roundness">
+      <div class="card-body d-flex flex-column align-items-center">
+        <h4 class="text-main"><%=__('latestPresc')%></h4><br>
+  <form class="form-inline user" action="/organisation/pharmacist/getprescription" method="POST">
+    <input type="text" class="form-control form-control-user mr-sm-2" name="medicalID" id="getHist"
+      placeholder="<%=__('medicalID')%>" aria-label="Search" autocomplete="off">
+    <input type="text" name="encrID" id="encrID" hidden>
+    <button class="btn  my-2 my-sm-0 submit-btn roundness" type="submit"><%=__('getHist')%></button>
+  </form>
+</div>
+<hr>
+<div class="card-body d-flex flex-column align-items-center">
+  <h4 class="text-main"><%=__('prescHist')%></h4><br>
+  <form class="form-inline user" action="/organisation/pharmacist/getprescriptionhistory" method="POST">
+    <input class="form-control form-control-user mr-sm-2" type="text" placeholder="<%=__('medicalID')%>"
+      name="medicalID" aria-label="Search" id="getHist2">
+    <input type="text" name="encrID" id="encrID2" hidden>
+    <button class="btn  my-2 my-sm-0 submit-btn roundness" type="submit"><%=__('getHist')%></button>
+  </form>
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+  <div class="card border-0 shadow-lg roundness" style="height: 400px; overflow-y: scroll;">
+    <div class="card-body border-0">
+      <% if(details && details instanceof Array) {%>
+      <p class="h5"><%= __('name')%>:
+        <span class="h4 text-main"><%=details[0]['Value']['name']%></span>
+      </p>
+      <p class="h5 mb-3"><%= __('dob')%>:
+        <span class="h4 text-main"><%=details[0]['Value']['dob']%></span>
+      </p>
+      <%for(var i = 0; i<details.length; i++) { %>
+      <%if(details[i]['Value']['prescription']!=""){%>
+      <div class="card border-0 bg-accent text-white roundness p-3 mt-2">
+        Date:
+        <%=Date(details[i]['Timestamp'].slice(0, 11)).slice(4, 15)%>
+        <br>
+        <span class="h5"><%=details[i]['Value']['prescription']%></span>
+        <br>
+        <span class="h5"><%=details[i]['Value']['addedby']%></span>
+      </div>
+      <%}%>
+         <%}%>
+      <%} else {%>
+      <p class="h5"><%= __('name')%>:
+        <span class="h4 text-main"><%=details.name%></span>
+      </p>
+      <p class="h5"><%= __('dob')%>:
+        <span class="h4 text-main"><%=details.dob%></span>
+      </p>
+      <p class="h5 mt-5"><%= __('presc')%>:
+        <span class="h4 text-main"><%=details.prescription%></span>
+      </p>
+      <p class="h5 mt-5"><%= __('addedby')%>:
+        <span class="h4 text-main"><%=details.addedby%></span>
+      </p>
+      <%}%>
+      </div>
+  </div>
+</div>
+<div id="perms" data-perms="<%=JSON.stringify(perms)%>">
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute; bottom: 0; z-index:-1">
+      <path fill="#0f4c75" fill-opacity="1"
+        d="M0,192L48,208C96,224,192,256,288,266.7C384,277,480,267,576,240C672,213,768,171,864,176C960,181,1056,235,1152,261.3C1248,288,1344,288,1392,288L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+    <%-include ('../partials/footer') %>
+    <script>
+      $(document).ready(function () {
+        window.setTimeout(function () {
+          $(".alert").fadeTo(1000, 0).slideUp(500, function () {
+            $(this).remove();
+          });
+        }, 4000);
+        let perms = JSON.parse($('#perms').attr('data-perms'))
+        let fields = []
+        perms.forEach((val) => {
+          fields.push({
+            label: val.name,
+            value: val._id,
+            dob: val.dob
+          });
+        });
+        console.log(fields);
+        $('#getHist').autocomplete({
+          source: fields,
+          select: function (event, ui) {
+            event.preventDefault();
+            $('#getHist').val(ui.item.label);
+            $('#encrID').val(ui.item.value);
+          }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+          return $("<li></li>")
+            .data("item.autocomplete", item)
+            .append(`<div>${item.label}, <span style="color: grey">${getAge(item.dob)}</span></div>`)
+            .appendTo(ul);
+        };
+      });
+
+      function getAge(dob) {
+        var today = new Date();
+        var age = today.getFullYear() - dob.split('/')[2];
+        var m = today.getMonth() - dob.split('/')[1];
+        if (m < 0) {
+          age--;
+        }
+        return age;
+      }
+    </script>

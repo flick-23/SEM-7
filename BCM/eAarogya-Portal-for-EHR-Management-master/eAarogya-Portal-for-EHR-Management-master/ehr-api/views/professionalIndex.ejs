@@ -1,0 +1,37 @@
+<%- include("./partials/header") %>
+<div class="container">
+
+    <div class="col-12 row justify-content-center">
+        <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_4FGi6N.json" background="transparent"
+            speed="1" style="width: 100%; height: 500px;" loop=false autoplay></lottie-player>
+    </div>
+    <div class="col-12 d-flex justify-content-center flex-wrap professionals">
+        <a href="/organisation/clinician/login" class="card shadow bg-accent border-0 p-3 text-white h5 m-2 roundness">
+            <%=__('clinician')%>
+        </a>
+        <a href="/organisation/pharmacist/login" class="card shadow bg-accent border-0 p-3 text-white h5 m-2 roundness">
+            <%=__('pharma')%>
+        </a>
+        <a href="/organisation/radiologist/login"
+            class="card shadow bg-accent border-0 p-3 text-white h5 m-2 roundness">
+            <%=__('radiologist')%>
+        </a>
+        <a href="/organisation/healthcareprovider/login"
+            class="card shadow bg-accent border-0 p-3 text-white h5 m-2 roundness">
+            <%=__('hcp')%>
+        </a>
+        <a href="/organisation/testcenter/login" class="card shadow bg-accent border-0 p-3 text-white h5 m-2 roundness">
+            <%=__('testCenter')%>
+        </a>
+        <a href="/organisation/researcher/login" class="card shadow bg-accent border-0 p-3 text-white h5 m-2 roundness">
+            <%=__('researcher')%>
+        </a>
+    </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="login-svg"
+    style="position: absolute; bottom: 0; z-index:-1">
+    <path fill="#0f4c75" fill-opacity="1"
+        d="M0,192L120,170.7C240,149,480,107,720,106.7C960,107,1200,149,1320,170.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z">
+    </path>
+</svg>
+<%- include("./partials/footer") %>

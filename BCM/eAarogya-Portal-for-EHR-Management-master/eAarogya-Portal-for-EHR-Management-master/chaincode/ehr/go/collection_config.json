@@ -1,0 +1,16 @@
+[
+    {
+        "name": "collectionRecord",
+        "policy": "OR('clinicianMSP.member','radiologistMSP.member','centAuthMSP.member','healthCareProviderMSP.member','researcherMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 24,
+        "blockToLive": 0
+    },
+    {
+        "name": "collectionPrescription",
+        "policy": "OR('pharmacistMSP.member','clinicianMSP.member','radiologistMSP.member','centAuthMSP.member','healthCareProviderMSP.member','researcherMSP.member')",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 30,
+        "blockToLive": 0
+    }
+]

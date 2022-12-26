@@ -1,0 +1,175 @@
+<%- include ('../partials/header') %>
+
+<body>
+  <h3 class="m-3 text-main font-weight-bold"><%=__('researcher')%> Portal</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-xl-3">
+      <h4 align="center"><%=__('selectDisease')%></h4>
+      <div id="disease_list" align="center"></div>
+    </div>
+    <div class="col-md-6">
+      <div id="chartContainer"></div>
+    </div>
+  </div>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute; bottom: 0; z-index:-1">
+    <path fill="#0f4c75" fill-opacity="1"
+      d="M0,192L48,208C96,224,192,256,288,266.7C384,277,480,267,576,240C672,213,768,171,864,176C960,181,1056,235,1152,261.3C1248,288,1344,288,1392,288L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+  </svg>
+</body>
+<%- include("../partials/footer") %>
+<script type="text/javascript">
+  var patients = (function () {
+    var patients = null;
+    $.ajax({
+      'async': false,
+      'global': false,
+      'url': "http://localhost:3000/organisation/researcher/patientsdata",
+      'dataType': "json",
+      'success': function (data) {
+        patients = data;
+      }
+    });
+    return patients;
+  })();
+  var statess = [];
+  var stateslist = [];
+  var States = {};
+  States.items = [];
+  var diseasess = [];
+  var diseaselist = {};
+  diseaselist.itemlist = [];
+  var statedislist = {};
+  statedislist.items = [];
+  for (var i = 0; i < patients.length; i++) {
+    diseasess[i] = patients[i].disease;
+  }
+  for (var i = 0; i < patients.length; i++) {
+    statess[i] = patients[i].state;
+  }
+
+  function countdisease(array_count, scope) {
+    array_count.sort();
+    var current = "";
+    var cnt = 0;
+    for (var i = 0; i < array_count.length; i++) {
+      if (array_count[i] !== current) {
+        if (cnt > 0) {
+          var item = {
+            'name': current,
+            'counts': cnt
+          };
+          scope.push(item);
+        }
+        current = array_count[i].slice();
+        cnt = 1;
+      } else {
+        cnt++;
+      }
+    }
+    if (cnt > 0) {
+      var item = {
+        'name': current,
+        'counts': cnt
+      };
+      scope.push(item);
+    }
+  }
+
+  function addData(data, Heading, chartype) {
+    var dataPoints = [];
+    if (chartype == "Diseases") {
+      var header = "Count of " + Heading + " in India";
+    } else {
+      if (Heading == "States")
+        header = "Count of Diseases in India";
+      else
+        header = "Count of Diseases in " + Heading;
+    }
+    CanvasJS.addColorSet("blueShades",
+      [
+        "#1261A0",
+        "#4184A4",
+        "#4DC8E9",
+        "#8AE3D7",
+        "#61D4D4",
+        "#3BB2E2",
+        "#ADD8E6"
+      ]);
+    var chart = new CanvasJS.Chart("chartContainer", {
+      colorSet: "blueShades",
+      animationEnabled: true,
+      theme: "light2",
+      title: {
+        text: header
+      },
+      axisY: {
+        title: "Units",
+        titleFontSize: 24
+      },
+      data: [{
+        type: "column",
+        yValueFormatString: "#,### Units",
+        dataPoints: dataPoints
+      }]
+    });
+
+    for (var i = 0; i < data.length; i++) {
+      dataPoints.push({
+        y: data[i].counts,
+        label: data[i].name
+      });
+    }
+
+    chart.render();
+  }
+  countdisease(diseasess, diseaselist.itemlist);
+  addData(diseaselist.itemlist, "Diseases", "Diseases");
+  for (var i = 0; i < diseaselist.itemlist.length; i++) {
+    var states = [];
+    var k = 0;
+    for (var j = 0; j < patients.length; j++) {
+      if (patients[j].disease === diseaselist.itemlist[i].name) {
+        states[k] = patients[j].state;
+        k++;
+      }
+    }
+    var finalstates = {};
+    finalstates.itemss = [];
+    countdisease(states, finalstates.itemss);
+    var item1 = {
+      'dname': diseaselist.itemlist[i].name,
+      'snames': finalstates.itemss
+    };
+    statedislist.items.push(item1);
+  }
+  var myDiv = document.getElementById("disease_list");
+  var selectList = document.createElement("select");
+  selectList.setAttribute("id", "mySelect");
+  selectList.setAttribute("class", "dropdown1");
+  var opt = document.createElement("option");
+  opt.setAttribute("value", "Diseases");
+  opt.text = "Diseases";
+  selectList.appendChild(opt);
+  for (var i = 0; i < diseaselist.itemlist.length; i++) {
+    var option = document.createElement("option");
+    option.setAttribute("value", diseaselist.itemlist[i].name);
+    option.text = diseaselist.itemlist[i].name;
+    selectList.appendChild(option);
+  }
+  myDiv.appendChild(selectList);
+  $('.dropdown1').change(function () {
+    var e = document.getElementById("mySelect");
+    var selected = $(e).find('option:selected').attr('value');
+    var nametype = $("input[name='type']:checked").value;
+    console.log(selected);
+    for (var i = 0; i < statedislist.items.length; i++) {
+      if (statedislist.items[i].dname == selected) {
+        addData(statedislist.items[i].snames, selected, "Diseases");
+      } else if (selected == "Diseases") {
+        addData(diseaselist.itemlist, selected, "Diseases");
+      }
+    }
+  });
+</script>

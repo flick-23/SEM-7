@@ -1,0 +1,365 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Alpha",
+        "version": "1.0.0",
+        "title": "eMedical Record System"
+    },
+    "host": "localhost:3000",
+    "basePath": "/ehr",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/createRecord": {
+            "post": {
+                "summary": "Create New Medical Record",
+                "description": "Add User",
+                "operationId": "createRecord",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Record object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/Record"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/createMedicineRecord": {
+            "post": {
+                "summary": "Create New Medicine Record",
+                "description": "Add Medicine record for use",
+                "operationId": "createMedicineRecord",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Medicine Record object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/MedicineRecord"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+
+        "/addReport": {
+            "post": {
+                "summary": "Add a new medical report",
+                "description": "Add Report",
+                "operationId": "addReport",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Report object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/addReport"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/addMedicineReport": {
+            "post": {
+                "summary": "Add a new medicine prescription report",
+                "description": "Add Prescription",
+                "operationId": "addMedicineReport",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Report object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/addMedicineReport"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+
+        "/addrLReport": {
+            "post": {
+                "summary": "Add a new RadioLogist report",
+                "description": "Add Report and links",
+                "operationId": "addrLReport",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Report object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/addrLReport"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+
+        "/getReport": {
+            "post": {
+                "summary": "Get the details of the previous report",
+                "description": "Get report",
+                "operationId": "getReport",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Report object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/getReport"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/getRecord": {
+            "post": {
+                "summary": "Get the history of the record",
+                "description": "Get record",
+                "operationId": "getRecord",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Record object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/getReport"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/getMedicineReport": {
+            "post": {
+                "summary": "Get the details of the latest prescription",
+                "description": "Get prescription report",
+                "operationId": "getMedicineReport",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Report object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/getReport"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/getMedicineRecord": {
+            "post": {
+                "summary": "Get the details of the history of prescriptions",
+                "description": "Get prescription history",
+                "operationId": "getMedicineRecord",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Report object",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/getReport"
+                    }
+                }],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Record": {
+            "type": "object",
+            "properties": {
+                "recordID": {
+                    "type": "string",
+                    "description": "New Record ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of person"
+                },
+                "dob": {
+                    "type": "string",
+                    "description": "DOB of the user"
+                },
+                "address": {
+                    "type": "string",
+                    "description": "Address of the user"
+                }
+            }
+        },
+        "MedicineRecord": {
+            "type": "object",
+            "properties": {
+                "recordID": {
+                    "type": "string",
+                    "description": "New Record ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of person"
+                },
+                "dob": {
+                    "type": "string",
+                    "description": "DOB of the user"
+                },
+                "address": {
+                    "type": "string",
+                    "description": "Address of the user"
+                }
+            }
+        },
+
+        "addReport": {
+            "type": "object",
+            "properties": {
+                "recordID": {
+                    "type": "string",
+                    "description": "Existing Record ID"
+                },
+                "report": {
+                    "type": "string",
+                    "description": "Medical report"
+                }
+            }
+        },
+
+        "addMedicineReport": {
+            "type": "object",
+            "properties": {
+                "recordID": {
+                    "type": "string",
+                    "description": "Existing Record ID"
+                },
+                "prescription": {
+                    "type": "string",
+                    "description": "Prescription"
+                }
+            }
+        },
+        "addrLReport": {
+            "type": "object",
+            "properties": {
+                "recordID": {
+                    "type": "string",
+                    "description": "Existing Record ID"
+                },
+                "report": {
+                    "type": "string",
+                    "description": "Medical report"
+                },
+                "links": {
+                    "type": "string",
+                    "description": "Links to report images"
+                }
+            }
+        },
+
+        "getReport": {
+            "type": "object",
+            "properties": {
+                "recordID": {
+                    "type": "string",
+                    "description": "Exising record ID"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+
+}

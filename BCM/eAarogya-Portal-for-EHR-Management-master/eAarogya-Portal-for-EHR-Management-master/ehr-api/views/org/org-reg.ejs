@@ -1,0 +1,176 @@
+<%- include ('../partials/header') %>
+
+<body>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-9 col-lg-12 col-xl-10">
+            <div class="card shadow-lg o-hidden border-0 p-2 mt-4 roundness" style="min-height: 400px;">
+                <div class="text-center p-3">
+                    <h4 class="mt-2 h2 text-accent"><%=__('orgReg.reg')%></h4>
+                </div>
+                <div class="card-body">
+                    <form class="form user" method="post" action="/organisation/register">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="name">Organisation Name: </label>
+                                    <input type="text" class="form-control form-control-user" name="name" id="name" />
+                                </div>
+                            </div>
+                            <div class="col-md-3 ml-1">
+                                <div class="form-group">
+                                    <label for="pin">PIN Code: </label>
+                                    <input type="text" class="form-control form-control-user" name="pin" id="pin" />
+                                </div>
+                            </div>
+                            <div class="col-md-1 mt-3 ml-1">
+                                <button class="btn submit-btn roundness"><%=__('search')%></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center mb-3 col-md-8 offset-md-2"><%=message%></div>
+                    <% if(message!=='1 match found') {%>
+                    <div class="text-center">If you have not registered your hospital, you can do so here: <a
+                            href="https://www.nhp.gov.in/registration"
+                            target="__blank">https://www.nhp.gov.in/registration</a></div>
+                    <br>
+                    <%}%>
+                    <% if(results.length) {%>
+                    <table class="table text-dark">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>State</th>
+                                <th>District</th>
+                                <th>Location</th>
+                                <th>PIN</th>
+                                <th>Telephone</th>
+                                <th>Mobile #</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i in results) {%>
+                            <tr>
+                                <td><%=results[i][3]%></td>
+                                <td><%=results[i][8]%></td>
+                                <td><%=results[i][9]%></td>
+                                <td><%=results[i][2]%></td>
+                                <td><%=results[i][11]%></td>
+                                <td><%=results[i][12]%></td>
+                                <td><%=results[i][13]%></td>
+                                <td><button class="btn submit-btn" data-toggle="modal" data-target="#modal"
+                                        data-name="<%=results[i][3]%>" data-state="<%=results[i][8]%>"
+                                        data-district="<%=results[i][9]%>" data-loc="<%=results[i][3]%>"
+                                        data-pin="<%=results[i][11]%>" data-phone="<%=results[i][12]%>"
+                                        data-mobile="<%=results[i][13]%>">Select</button></td>
+                            </tr>
+                            <%}%>
+                            </tbody>
+                        </table>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="details-form" action="/organisation/submit-application" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name">Organisation Name: </label>
+                            <input type="text" class="form-control form-control-user" name="name" id="name" />
+                        </div>
+
+                        <div class="form-row justify-content-between">
+                            <div class="form-group">
+                                <label for="state">State </label>
+                                <input type="text" class="form-control form-control-user" name="state" id="state" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="district">District: </label>
+                                <input type="text" class="form-control form-control-user" name="district"
+                                    id="district" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loc">Location: </label>
+                            <input type="text" class="form-control form-control-user" name="loc" id="loc" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pin">PIN Code: </label>
+                            <input type="text" class="form-control form-control-user" name="pin" id="pin" />
+                        </div>
+
+                        <div class="form-row justify-content-between">
+                            <div class="form-group justify-content-center">
+                                <label for="phone">Telephone Number: </label>
+                                <input type="text" class="form-control form-control-user" name="phone" id="phone" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number: </label>
+                                <input type="text" class="form-control form-control-user" name="mobile" id="mobile" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Contact Email: </label>
+                            <input type="text" class="form-control form-control-user" name="email" id="email" />
+                            <small>This email will be used for further communication</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regNo">Hospital Registration Number: </label>
+                            <input type="text" class="form-control form-control-user" name="regNo" id="regNo" required>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" name="file" class="custom-file-input" id="file" required>
+                            <label class="custom-file-label" for="file" style="overflow: hidden;">Registration
+                                Number Scanned Copy (.pdf, .jpeg or .png)</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit" class="btn btn-primary" onclick="submitForms()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include("../partials/footer") %>
+<script>
+    function submitForms() {
+        $('#details-form').submit();
+    }
+
+    $(document).on('show.bs.modal', '#modal', function (event) {
+        let button = $(event.relatedTarget);
+        let modal = $(this);
+        modal.find('#name').val(button.data('name'));
+        modal.find('#state').val(button.data('state'));
+        modal.find('#district').val(button.data('district'));
+        modal.find('#loc').val(button.data('loc'));
+        modal.find('#pin').val(button.data('pin'));
+        modal.find('#phone').val(button.data('phone'));
+        modal.find('#mobile').val(button.data('mobile'))
+    });
+
+    $('input[type="file"]').change(function (e) {
+        var fileName = e.target.files[0].name;
+        let label = $(this).siblings('.custom-file-label');
+        label.html(fileName);
+    })
+</script>

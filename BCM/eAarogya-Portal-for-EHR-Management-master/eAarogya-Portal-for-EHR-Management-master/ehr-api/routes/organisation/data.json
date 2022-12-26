@@ -1,0 +1,78 @@
+[
+{	"id":"01",
+	"state":"Karnataka",
+	"disease":"Jaundice"
+},
+{	"id":"02",
+	"state":"Maharashtra",
+	"disease":"Jaundice"
+},
+{	"id":"03",
+	"state":"Kerala",
+	"disease":"Jaundice"
+},
+{	"id":"04",
+	"state":"Madhya Pradesh",
+	"disease":"Jaundice"
+},
+{	"id":"05",
+	"state":"Chattisgarh",
+	"disease":"Dengue"
+},
+
+{	"id":"06",
+	"state":"Karnataka",
+	"disease":"Dengue"
+},
+
+{	"id":"07",
+	"state":"Maharashtra",
+	"disease":"Dengue"
+},
+{	"id":"08",
+	"state":"Gujarat",
+	"disease":"Jaundice"
+},
+{	"id":"09",
+	"state":"Karnataka",
+	"disease":"Malaria"
+},
+{	"id":"10",
+	"state":"Maharashtra",
+	"disease":"Malaria"
+},
+{	"id":"11",
+	"state":"Kerala",
+	"disease":"Malaria"
+},
+{	"id":"12",
+	"state":"Kerala",
+	"disease":"Malaria"
+},
+{
+	"id":"13",
+	"state":"Karnataka",
+	"disease":"Malaria"
+},
+{
+	"id":"14",
+	"state":"Karnataka",
+	"disease":"Dengue"
+},
+{
+	"id":"15",
+	"state":"Karnataka",
+	"disease":"Corona"
+},
+{
+	"id":"14",
+	"state":"Assam",
+	"disease":"Corona"
+},
+{
+	"id":"15",
+	"state":"Tamil Nadu",
+	"disease":"Pneumonia"
+}
+
+]
