@@ -1,9 +1,0 @@
-[
-    {
-        "name": "medicalReports",
-        "policy": "OR('clinicianMSP.member','radiologistMSP.member')",
-        "requiredPeerCount": 0,
-        "maxPeerCount": 6,
-        "blockToLive": 10000000
-    }
-]
