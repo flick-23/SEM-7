@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student Detail Form"
+        android:gravity="center"
+        android:layout_margin="30dp"
+        android:textSize="30dp"
+        android:textColor="#4e3a23"
+        android:typeface="sans" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/nameHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:text="Name : "
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:hint="Enter your name"
+                android:textSize="25dp"
+                android:inputType="text" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/usnHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:text="USN : "
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/usn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:hint="Enter your USN"
+                android:textSize="25dp"
+                android:inputType="text" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/deptholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:text="Dept : "
+                android:textSize="25dp" />
+
+
+            <Spinner
+                android:id="@+id/dept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:layout_marginVertical="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="25dp" />
+        </TableRow>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:id="@+id/submit"
+            android:onClick="onSubmit"
+            />
+
+    </TableLayout>
+
+
+</LinearLayout>
