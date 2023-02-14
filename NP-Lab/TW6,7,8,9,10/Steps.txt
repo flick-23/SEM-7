@@ -1,0 +1,131 @@
+
+Term work – 6
+Simulate a Full duplex connection in an wired network using NS3. 
+Steps :
+Step 1 : Open UBUNTU and locate and open ns-allinone-3.28 folder on Desktop.
+Step 2 : Go to ns-3.28 folder and open examples->tutorial->first.cc
+Step 3 : In first.cc , include the following code. (Before – “Simulator::Run ();”)
+		#include “ns3/netanim-module.h”
+		AnimationInterface anim(“first, xml”);
+		AsciiTraceHelper ascii;
+pointToPoint.EnableAsciiAll(ascii.CreateFileStream(“first.tr”));
+		pointToPoint.EnablePcapAll(“first”);
+Step 4 : Copy first.cc and paste it in ns-3.28->scratch folder. Remember that scratch folder should contain only one .cc example file and it must contain scratch executable file named scratch-simulator.cc and other files can be deleted.
+Step 5 : Open terminal and change working directory to Desktop by cd Desktop and type following commands to go to location where scratch executable file is located i.e. scratch folder.
+Step 6 : cd ns-allinone-3.28
+Step 7 : cd ns-3.28
+Step 8 : Run the first.cc by entering following command.
+		./waf –run scratch/first
+Step 9 : Once build is successful, return to ns-allinone-3.28 folder with cd ../ and enter into netanim-3.108 with cd netanim-3.108
+Step 10 : Now to see the animation, we have to open NetAnim software. So open by entering ./NetAnim on terminal.
+Step 11 : In NetAnim, open first.xml by clicking on open XML trace file icon.
+Step 12 : Click on run option/icon to see the animation. To see the packet transfer, open Packets Tab.
+
+
+============================================================================================================================================================================
+
+Term work – 7
+Simulate a simple Wireless UDP application using NS3.
+Steps :
+Step 1 : Open UBUNTU and locate and open ns-allinone-3.28 folder on Desktop.
+Step 2 : Go to ns-3.28 folder and open examples->tutorial->second.cc
+Step 3 : In second.cc , include the following code. (Before – “Simulator::Run ();”)
+		#include “ns3/netanim-module.h”
+		AnimationInterface anim("second, xml");
+  		AsciiTraceHelper ascii;
+pointToPoint.EnableAsciiAll(ascii.CreateFileStream("second.tr"));
+ 		pointToPoint.EnablePcapAll("second");
+Step 4 : Copy second.cc and paste it in ns-3.28->scratch folder. Remember that scratch folder should contain only one .cc example file and it must contain scratch executable file named scratch-simulator.cc and other files can be deleted.
+Step 5 : Open terminal and change working directory to Desktop by cd Desktop and type following commands to go to location where scratch executable file is located i.e. scratch folder.
+Step 6 : cd ns-allinone-3.28
+Step 7 : cd ns-3.28
+Step 8 : Run the second.cc by entering following command.
+		./waf –run scratch/second
+Step 9 : Once build is successful, return to ns-allinone-3.28 folder with cd ../ and enter into netanim-3.108 with cd netanim-3.108
+Step 10 : Now to see the animation, we have to open NetAnim software. So open by entering ./NetAnim on terminal.
+Step 11 : In NetAnim, open second.xml by clicking on open XML trace file icon.
+Step 12 : Click on run option/icon to see the animation. To see the packet transfer, open Packets Tab.
+
+
+============================================================================================================================================================================
+
+Term work – 8
+Simulate a simple 5G Network application using NS3.
+Steps :
+Step 1 : Open UBUNTU and locate and open ns-allinone-3.28 folder on Desktop.
+Step 2 : Go to ns-3.28 folder and open examples->tutorial->third.cc
+Step 3 : In third.cc , include the following code. (Before – “Simulator::Run ();”)
+		#include “ns3/netanim-module.h”
+		AnimationInterface anim("third, xml");
+  		AsciiTraceHelper ascii;
+  		pointToPoint.EnableAsciiAll(ascii.CreateFileStream("third.tr"));
+  		pointToPoint.EnablePcapAll("third");
+Step 4 : Copy third.cc and paste it in ns-3.28->scratch folder. Remember that scratch folder should contain only one .cc example file and it must contain scratch executable file named scratch-simulator.cc and other files can be deleted.
+Step 5 : Open terminal and change working directory to Desktop by cd Desktop and type following commands to go to location where scratch executable file is located i.e. scratch folder.
+Step 6 : cd ns-allinone-3.28
+Step 7 : cd ns-3.28
+Step 8 : Run the third.cc by entering following command.
+		./waf –run scratch/third
+Step 9 : Once build is successful, return to ns-allinone-3.28 folder with cd ../ and enter into netanim-3.108 with cd netanim-3.108
+Step 10 : Now to see the animation, we have to open NetAnim software. So open by entering ./NetAnim on terminal.
+Step 11 : In NetAnim, open third.xml by clicking on open XML trace file icon.
+Step 12 : Click on run option/icon to see the animation. To see the packet transfer, open Packets Tab.
+
+
+============================================================================================================================================================================
+
+
+Term work – 9
+Understanding the working of Ipv6 in Low power lossy network.
+Steps
+Step 1 : Go to the Location contiki-ng/tools/cooja/ with commands
+	Cd contiki-ng
+	Cd tools
+	Cd cooja
+Step 2 : Run the cooja simulator with
+	ant run
+	This allows cooja simulator to run and the build messages will be shown on the terminal.
+	The cooja simulator window opens up.
+Step 3 : Create a new simulation by clicking file menu present in Files Tab.
+Step 4 :  Click on Motes tab, and create Sky mote as
+	Add motes -> Create new mote type -> Sky mote
+	In the window opened, give the file name, and for Contiki process/Firmware browse the file ipv6-hooks.c. Select the same.
+	Click on compile button and create the motes by clicking on create button.
+Step 5 : In the motes window opened, enter the number of motes you want to create. ( Here mote refers to the node in the network). Keep all other options as they are.
+	The motes are shown on the Networks section. 
+Step 6 : Configure the motes. i. e. set the motes as server and client.
+	To do this, right click on any mote, select mote tools for Sky3, and select Serial Socket (CLIENT) if you want to set that mote as client or select Serial Socket(SERVER) to make the mote as server.
+Step 7 : Serial Socket Server and Client windows appear.
+	Make the client port number same as that of the server.
+	Start the Server by clicking Start button in Serial Socket Server window, start the client by following the same in Serial.
+	Connect the client and server by clicking connect button  in the client window. It shows the connected message in green color.
+Step 8 : Start the connection by clicking start button in Simulation control window.
+	We can check the output in Mote Output Window.
+
+
+
+============================================================================================================================================================================
+
+
+Term work – 10
+Understanding the working of IoT routing using RPL protocol
+Steps
+Step 1 : Go to the Location contiki-ng/tools/cooja/ with commands
+	Cd contiki-ng
+	Cd tools
+	Cd cooja
+Step 2 : Run the cooja simulator with
+	ant run
+	This allows cooja simulator to run and the build messages will be shown on the terminal.
+	The cooja simulator window opens up.
+Step 3 : Create a new simulation by clicking file menu present in Files Tab.
+Step 4 : Upload two files for udp client and udp server.
+	Create one mote for client and upload udp client file for it. Which is present in, 
+contiki-ng ->examples->rpl-udp
+	Upload udp-client.c for client and configure this mote as client as given in Step 6 above.
+	Create One more mote and upload udp-server.c file for it with above procedure and configure this mote as the server.
+Step 5 :  Create only one mote for client and one mote for Server.
+
+
+
+
